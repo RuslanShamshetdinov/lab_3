@@ -5,7 +5,6 @@
 class help
 {
 public:
-    void helpon(int choice);
     void showmenu();
     bool isvalid(int ch);
 };
