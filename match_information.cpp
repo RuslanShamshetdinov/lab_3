@@ -27,7 +27,7 @@ istream &operator>>(istream &in, match_information &obj)
 {
     in >> obj.team_one;
     in >> obj.team_two;
-    in >> obj.hour;; 
+    in >> obj.hour;
     in >> obj.minutes;
     in >> obj.day;
     in >> obj.month;

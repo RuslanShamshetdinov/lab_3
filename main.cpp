@@ -2,14 +2,14 @@
 #include <cstdlib>
 #include <algorithm>
 #include "match_information.h"
-#include"help.h"
+#include "help.h"
 using namespace std;
 int main(int argc, char *argv[])
 {
     string file_name;
     ifstream rf;
     int curr_match;
-    int i=0;
+    int i = 0;
     int number;
     match_information *array;
     unsigned int poisk_hour;
@@ -37,12 +37,12 @@ int main(int argc, char *argv[])
         cout << "Cannot open file!" << endl;
         return 1;
     }
-    int size_array=1;
+    int size_array = 1;
     rf.read((char *)&size_array, sizeof(size_array));
-     if (!rf.gcount())
-        {
-            size_array=1;
-        }
+    if (!rf.gcount())
+    {
+        size_array = 1;
+    }
     array = new match_information[size_array];
     while (!rf.eof())
     {
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
             i++;
         }
     }
-    curr_match=i;
+    curr_match = i;
     rf.close();
     for (;;)
     {
@@ -82,11 +82,11 @@ int main(int argc, char *argv[])
         {
             if (size_array <= curr_match)
             {
-                match_information* new_array  = new match_information[2 * size_array];
-                copy_n(array,size_array,new_array);
+                match_information *new_array = new match_information[2 * size_array];
+                copy_n(array, size_array, new_array);
                 delete[] array;
                 array = new_array;
-                size_array *=2;
+                size_array *= 2;
             }
             cout << "first team" << endl;
             cin >> array[curr_match].team_one;
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
             cin >> poisk_s1;
             cout << "Введите вторую команду" << endl;
             cin >> poisk_s2;
-            for (int i = 0; i <curr_match; i++)
+            for (int i = 0; i < curr_match; i++)
             {
                 if ((array[i].team_one == poisk_s1) && (array[i].team_two == poisk_s2))
                 {
@@ -131,7 +131,7 @@ int main(int argc, char *argv[])
                     flag = 1;
                 }
             }
-             if (flag == 0)
+            if (flag == 0)
             {
                 cout << "Ничего не найдено" << endl;
             }
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
             cin >> poisk_hour;
             cout << "Введите минуту" << endl;
             cin >> poisk_minutes;
-            for (int i = 0; i<curr_match; i++)
+            for (int i = 0; i < curr_match; i++)
             {
                 if ((array[i].hour == poisk_hour) && (array[i].minutes == poisk_minutes))
                 {
@@ -194,14 +194,14 @@ int main(int argc, char *argv[])
                 cout << "Пожалуйста, выберите другое" << endl;
                 cin >> number;
             }
-                array[number - 1].team_one = array[curr_match - 1].team_one;
-                array[number - 1].team_two = array[curr_match - 1].team_two;
-                array[number - 1].hour = array[curr_match - 1].hour;
-                array[number - 1].minutes = array[curr_match - 1].minutes;
-                array[number - 1].day = array[curr_match - 1].day;
-                array[number - 1].month = array[curr_match - 1].month;
-                array[number - 1].year = array[curr_match - 1].year;
-                curr_match = curr_match - 1;
+            array[number - 1].team_one = array[curr_match - 1].team_one;
+            array[number - 1].team_two = array[curr_match - 1].team_two;
+            array[number - 1].hour = array[curr_match - 1].hour;
+            array[number - 1].minutes = array[curr_match - 1].minutes;
+            array[number - 1].day = array[curr_match - 1].day;
+            array[number - 1].month = array[curr_match - 1].month;
+            array[number - 1].year = array[curr_match - 1].year;
+            curr_match = curr_match - 1;
         }
         break;
         }
@@ -209,7 +209,7 @@ int main(int argc, char *argv[])
     }
     ofstream wf;
     wf.open(file_name, ios::binary | ios::out);
-     wf.write((char *)&size_array, sizeof(size_array));
+    wf.write((char *)&size_array, sizeof(size_array));
     for (int i = 0; i < curr_match; i++)
     {
         wf.write((char *)&array[i].hour, sizeof(unsigned int));
